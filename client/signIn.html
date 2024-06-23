@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>&#128512 Sign In</title>
+    <style>
+        :root {
+            --dark-color-a: #7D53DE;
+            --dark-color-b: #3FB2F7;
+            --dark-color-c: #78E3FD;
+            --light-color: #34F6F2;
+            --success-color: #9FFFA3;
+            --error-color: #FF9F9F;
+            --dark-grey: #3a3b3c;
+        }
+
+        * {
+            font-family: "Arvo", sans-serif;
+            font-weight: 550;
+        }
+
+        body {
+            background-color: var(--light-color);
+            background-image: linear-gradient(to bottom right, var(--light-color), var(--dark-color-a));
+            background-repeat: no-repeat;
+            background-size:  100vw 100vh;
+           
+        }
+
+        /* style classes for signin.html, includes most things*/
+
+        .signInSquare {
+            background-color: white;
+            display: grid;
+            grid: 40px / auto auto auto;
+            gap: 5px;
+            margin: 300px auto;
+            grid-template-rows: 40pt 240pt;
+            width: 480px;
+            height: 378px;
+            border-width: 2px;
+            border-radius: 10px;
+
+        }
+
+        .signInSquare_topLeft {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+            background-color: var(--dark-color-c);
+            border-width: 5px;
+            border-color: lightgray;
+            border-width: 2px;
+            border-top-left-radius: 10px;
+
+        }
+
+        .signInSquare_topRight {
+            grid-column: 2 / span 2;
+            grid-row: 1 / span 1;
+            background-color: var(--dark-color-b);
+            border-width: 5px;
+            border-color: lightgray;
+            border-width: 2px;
+            border-top-right-radius: 10px;
+        }
+
+        .signInSquare_bottom {
+            grid-column: 1 / span 3;
+            grid-row: 2 / span 1;
+            background-color: white;
+            border-width: 2px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .signInMain {
+            margin: auto;
+        }
+
+        .signInDiv {
+            margin: auto;
+            vertical-align: middle;
+        }
+
+        .signInLabel1 {
+            text-align: center;
+            text-emphasis-color: white;
+            color: white;
+            font-size: large;
+        }
+
+        .signInLabel2 {
+            text-align: center;
+            text-emphasis-color: var(--dark-grey);
+            color: var(--dark-grey);
+            font-size: large;
+        }
+
+        .signInForm {
+            vertical-align: middle;
+            margin: auto;
+        }
+
+        .signInElement {
+            text-align: center;
+            margin: 45px auto;
+        }
+
+        .button_send {
+            text-align: center;
+            vertical-align: middle;
+            width: 160px;
+            height: 50px;
+            border: 2px solid var(--dark-color-b);
+            border-radius: 4px 4px 4px 4px;
+            background-color: var(--dark-color-b);
+            box-shadow: 0px 0px 2px 0px #333333;
+            font-size: large;
+            display: flex;
+            margin: 20px auto;
+            color: white;
+        }
+
+        .button_send:hover {
+            border-color: var(--dark-color-b);
+            color: var(--dark-color-b);
+            background-color: white;
+            box-shadow: 0px 0px 2px 0px #333333;
+        }
+
+        .signInInputBox {
+            padding: 6px;
+            font-size: 17px;
+            border-width: 4px;
+            margin: 20px auto;
+            border-color: var(--dark-color-b);
+            background-color: #FFFFFF;
+            color: grey;
+            border-style: solid;
+            border-radius: 6px;
+        }
+
+        .signInInputBox:focus {
+            outline: none;
+        }
+    </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+            crossorigin="anonymous"></script>
+    <script>
+
+        <!--- input scripts here -->
+
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        function set_username(){
+            const usernameInput = document.getElementById("username");
+            let username = usernameInput.value;
+            localStorage.setItem("storageName",username);
+
+            window.location.href = 'http://' + document.domain + ':' + location.port + '/chat';
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="signInSquare">
+
+        <div class="signInSquare_topLeft">
+            <p class="signInLabel1"">&#128512 PyChat</p>
+            </div>
+
+            <div class=" signInSquare_topRight">
+            <p class="signInLabel1">Sign In</p>
+        </div>
+
+        <div class="signInSquare_bottom">
+
+            <main class="signInMain">
+                <div class="signInDiv">
+                    
+
+                        <div class="signInElement">
+                            <label for="username" class="signInLabel2">Username</label>
+                            <input type="text" name="username" id="username" placeholder="Enter username..."
+                                class="signInInputBox" required />
+                        </div>
+
+                        <input class="button_send" id="button_send" type="submit" value="Join" onclick="set_username();"/>
+
+                    
+                </div>
+            </main>
+
+        </div>
+    </div>
+</body>
+
+<footer>
+
+</footer>
+</html>
